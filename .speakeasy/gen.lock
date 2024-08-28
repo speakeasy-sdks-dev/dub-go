@@ -4,7 +4,7 @@ management:
   docChecksum: a8165462b93c33c03cc5540b2f764d0b
   docVersion: 0.0.1
   speakeasyVersion: internal
-  generationVersion: 2.404.11
+  generationVersion: 2.404.10
   releaseVersion: 0.8.2
   configChecksum: 9ad93f9705e117c0020ddc17d962f7ae
   repoURL: https://github.com/dubinc/dub-go.git
