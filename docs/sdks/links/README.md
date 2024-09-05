@@ -26,8 +26,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -35,12 +35,12 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    request := operations.GetLinksRequest{
+
+    ctx := context.Background()
+    res, err := s.Links.List(ctx, operations.GetLinksRequest{
         Page: dubgo.Float64(1),
         PageSize: dubgo.Float64(50),
-    }
-    ctx := context.Background()
-    res, err := s.Links.List(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -102,8 +102,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -111,15 +111,15 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
         URL: "https://google.com",
         ExternalID: dubgo.String("123456"),
         TagIds: operations.CreateTagIdsStr(
         "[\"clux0rgak00011...\"]",
         ),
-    }
-    ctx := context.Background()
-    res, err := s.Links.Create(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -168,8 +168,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -177,9 +177,9 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    request := operations.GetLinksCountRequest{}
+
     ctx := context.Background()
-    res, err := s.Links.Count(ctx, request)
+    res, err := s.Links.Count(ctx, operations.GetLinksCountRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -228,8 +228,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -237,12 +237,12 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    request := operations.GetLinkInfoRequest{
+
+    ctx := context.Background()
+    res, err := s.Links.Get(ctx, operations.GetLinkInfoRequest{
         LinkID: dubgo.String("clux0rgak00011..."),
         ExternalID: dubgo.String("ext_123456"),
-    }
-    ctx := context.Background()
-    res, err := s.Links.Get(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -299,9 +299,9 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var linkID string = "<value>"
+
     ctx := context.Background()
-    res, err := s.Links.Delete(ctx, linkID)
+    res, err := s.Links.Delete(ctx, "<value>")
     if err != nil {
         log.Fatal(err)
     }
@@ -350,8 +350,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -359,9 +359,9 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var linkID string = "<value>"
 
-    var requestBody *operations.UpdateLinkRequestBody = &operations.UpdateLinkRequestBody{
+    ctx := context.Background()
+    res, err := s.Links.Update(ctx, "<value>", &operations.UpdateLinkRequestBody{
         URL: dubgo.String("https://google.com"),
         ExternalID: dubgo.String("123456"),
         TagIds: operations.CreateUpdateLinkTagIdsArrayOfStr(
@@ -369,9 +369,7 @@ func main() {
                     "clux0rgak00011...",
                 },
         ),
-    }
-    ctx := context.Background()
-    res, err := s.Links.Update(ctx, linkID, requestBody)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -421,8 +419,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -430,7 +428,9 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var request []operations.RequestBody = []operations.RequestBody{
+
+    ctx := context.Background()
+    res, err := s.Links.CreateMany(ctx, []operations.RequestBody{
         operations.RequestBody{
             URL: "https://google.com",
             ExternalID: dubgo.String("123456"),
@@ -440,9 +440,7 @@ func main() {
                     },
             ),
         },
-    }
-    ctx := context.Background()
-    res, err := s.Links.CreateMany(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -491,8 +489,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -500,7 +498,9 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var request *operations.BulkUpdateLinksRequestBody = &operations.BulkUpdateLinksRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Links.UpdateMany(ctx, &operations.BulkUpdateLinksRequestBody{
         LinkIds: []string{
             "<value>",
         },
@@ -510,9 +510,7 @@ func main() {
             "[\"clux0rgak00011...\"]",
             ),
         },
-    }
-    ctx := context.Background()
-    res, err := s.Links.UpdateMany(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -561,8 +559,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -570,7 +568,9 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
         URL: "https://google.com",
         ExternalID: dubgo.String("123456"),
         TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
@@ -578,9 +578,7 @@ func main() {
                     "clux0rgak00011...",
                 },
         ),
-    }
-    ctx := context.Background()
-    res, err := s.Links.Upsert(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
