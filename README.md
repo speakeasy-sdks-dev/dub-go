@@ -187,7 +187,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+| sdkerrors.SDKError            | 4xx-5xx                       | \*/\*                         |
 
 ### Example
 
