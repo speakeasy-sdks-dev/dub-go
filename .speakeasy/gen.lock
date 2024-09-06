@@ -4,7 +4,7 @@ management:
   docChecksum: a8165462b93c33c03cc5540b2f764d0b
   docVersion: 0.0.1
   speakeasyVersion: internal
-  generationVersion: 2.411.4
+  generationVersion: 2.410.0
   releaseVersion: 0.8.2
   configChecksum: 9ad93f9705e117c0020ddc17d962f7ae
   repoURL: https://github.com/dubinc/dub-go.git
@@ -33,249 +33,24 @@ features:
     sdkHooks: 0.1.0
     unions: 2.85.9
 generatedFiles:
-  - .gitattributes
-  - /models/components/clickevents.go
-  - /models/components/clicksbrowsers.go
-  - /models/components/clickscities.go
-  - /models/components/clickscount.go
-  - /models/components/clickscountries.go
-  - /models/components/clicksdevices.go
-  - /models/components/clicksos.go
-  - /models/components/clicksreferers.go
-  - /models/components/clickstimeseries.go
-  - /models/components/clickstoplinks.go
-  - /models/components/clickstopurls.go
-  - /models/components/continentcode.go
-  - /models/components/countrycode.go
-  - /models/components/domainschema.go
-  - /models/components/leadevents.go
-  - /models/components/leadsbrowsers.go
-  - /models/components/leadscities.go
-  - /models/components/leadscount.go
-  - /models/components/leadscountries.go
-  - /models/components/leadsdevices.go
-  - /models/components/leadsos.go
-  - /models/components/leadsreferers.go
-  - /models/components/leadstimeseries.go
-  - /models/components/leadstoplinks.go
-  - /models/components/leadstopurls.go
-  - /models/components/linkgeotargeting.go
-  - /models/components/linkschema.go
-  - /models/components/saleevents.go
-  - /models/components/salesbrowsers.go
-  - /models/components/salescities.go
-  - /models/components/salescount.go
-  - /models/components/salescountries.go
-  - /models/components/salesdevices.go
-  - /models/components/salesos.go
-  - /models/components/salesreferers.go
-  - /models/components/salestimeseries.go
-  - /models/components/salestoplinks.go
-  - /models/components/salestopurls.go
-  - /models/components/security.go
-  - /models/components/tagschema.go
-  - /models/components/workspaceschema.go
-  - /models/operations/bulkcreatelinks.go
-  - /models/operations/bulkupdatelinks.go
-  - /models/operations/createdomain.go
-  - /models/operations/createlink.go
-  - /models/operations/createtag.go
-  - /models/operations/deletedomain.go
-  - /models/operations/deletelink.go
-  - /models/operations/getlinkinfo.go
-  - /models/operations/getlinks.go
-  - /models/operations/getlinkscount.go
-  - /models/operations/getmetatags.go
-  - /models/operations/getqrcode.go
-  - /models/operations/getworkspace.go
-  - /models/operations/listdomains.go
-  - /models/operations/listevents.go
-  - /models/operations/retrieveanalytics.go
-  - /models/operations/trackcustomer.go
-  - /models/operations/tracklead.go
-  - /models/operations/tracksale.go
-  - /models/operations/updatedomain.go
-  - /models/operations/updatelink.go
-  - /models/operations/updatetag.go
-  - /models/operations/updateworkspace.go
-  - /models/operations/upsertlink.go
-  - /models/sdkerrors/badrequest.go
-  - /models/sdkerrors/conflict.go
-  - /models/sdkerrors/forbidden.go
-  - /models/sdkerrors/internalservererror.go
-  - /models/sdkerrors/inviteexpired.go
-  - /models/sdkerrors/notfound.go
-  - /models/sdkerrors/ratelimitexceeded.go
-  - /models/sdkerrors/unauthorized.go
-  - /models/sdkerrors/unprocessableentity.go
-  - CONTRIBUTING.md
-  - USAGE.md
+  - links.go
+  - qrcodes.go
   - analytics.go
-  - docs/models/components/clickevents.md
-  - docs/models/components/clicksbrowsers.md
-  - docs/models/components/clickscities.md
-  - docs/models/components/clickscitiescountry.md
-  - docs/models/components/clickscount.md
-  - docs/models/components/clickscountries.md
-  - docs/models/components/clicksdevices.md
-  - docs/models/components/clicksos.md
-  - docs/models/components/clicksreferers.md
-  - docs/models/components/clickstimeseries.md
-  - docs/models/components/clickstoplinks.md
-  - docs/models/components/clickstopurls.md
-  - docs/models/components/color.md
-  - docs/models/components/continentcode.md
-  - docs/models/components/country.md
-  - docs/models/components/countrycode.md
-  - docs/models/components/domains.md
-  - docs/models/components/domainschema.md
-  - docs/models/components/geo.md
-  - docs/models/components/leadevents.md
-  - docs/models/components/leadsbrowsers.md
-  - docs/models/components/leadscities.md
-  - docs/models/components/leadscitiescountry.md
-  - docs/models/components/leadscount.md
-  - docs/models/components/leadscountries.md
-  - docs/models/components/leadscountriescountry.md
-  - docs/models/components/leadsdevices.md
-  - docs/models/components/leadsos.md
-  - docs/models/components/leadsreferers.md
-  - docs/models/components/leadstimeseries.md
-  - docs/models/components/leadstoplinks.md
-  - docs/models/components/leadstopurls.md
-  - docs/models/components/linkgeotargeting.md
-  - docs/models/components/linkschema.md
-  - docs/models/components/plan.md
-  - docs/models/components/role.md
-  - docs/models/components/saleevents.md
-  - docs/models/components/salesbrowsers.md
-  - docs/models/components/salescities.md
-  - docs/models/components/salescitiescountry.md
-  - docs/models/components/salescount.md
-  - docs/models/components/salescountries.md
-  - docs/models/components/salescountriescountry.md
-  - docs/models/components/salesdevices.md
-  - docs/models/components/salesos.md
-  - docs/models/components/salesreferers.md
-  - docs/models/components/salestimeseries.md
-  - docs/models/components/salestoplinks.md
-  - docs/models/components/salestopurls.md
-  - docs/models/components/security.md
-  - docs/models/components/tagschema.md
-  - docs/models/components/users.md
-  - docs/models/components/workspaceschema.md
-  - docs/models/operations/bulkcreatelinkstagids.md
-  - docs/models/operations/bulkcreatelinkstagnames.md
-  - docs/models/operations/bulkupdatelinksrequestbody.md
-  - docs/models/operations/bulkupdatelinkstagids.md
-  - docs/models/operations/bulkupdatelinkstagnames.md
-  - docs/models/operations/color.md
-  - docs/models/operations/createdomainrequestbody.md
-  - docs/models/operations/createlinkrequestbody.md
-  - docs/models/operations/createtagrequestbody.md
-  - docs/models/operations/data.md
-  - docs/models/operations/deletedomainrequest.md
-  - docs/models/operations/deletedomainresponsebody.md
-  - docs/models/operations/deletelinkrequest.md
-  - docs/models/operations/deletelinkresponsebody.md
-  - docs/models/operations/event.md
-  - docs/models/operations/getlinkinforequest.md
-  - docs/models/operations/getlinkscountqueryparamtagids.md
-  - docs/models/operations/getlinkscountqueryparamtagnames.md
-  - docs/models/operations/getlinkscountrequest.md
-  - docs/models/operations/getlinksrequest.md
-  - docs/models/operations/getlinksresponse.md
-  - docs/models/operations/getmetatagsrequest.md
-  - docs/models/operations/getmetatagsresponsebody.md
-  - docs/models/operations/getqrcoderequest.md
-  - docs/models/operations/getworkspacerequest.md
-  - docs/models/operations/groupby.md
-  - docs/models/operations/interval.md
-  - docs/models/operations/level.md
-  - docs/models/operations/listdomainsrequest.md
-  - docs/models/operations/listdomainsresponse.md
-  - docs/models/operations/listeventsrequest.md
-  - docs/models/operations/listeventsresponsebody.md
-  - docs/models/operations/one.md
-  - docs/models/operations/option.md
-  - docs/models/operations/order.md
-  - docs/models/operations/paymentprocessor.md
-  - docs/models/operations/queryparamevent.md
-  - docs/models/operations/queryparamgroupby.md
-  - docs/models/operations/queryparaminterval.md
-  - docs/models/operations/queryparamtagids.md
-  - docs/models/operations/queryparamtagnames.md
-  - docs/models/operations/requestbody.md
-  - docs/models/operations/retrieveanalyticsrequest.md
-  - docs/models/operations/retrieveanalyticsresponsebody.md
-  - docs/models/operations/sort.md
-  - docs/models/operations/sortby.md
-  - docs/models/operations/tagids.md
-  - docs/models/operations/tagnames.md
-  - docs/models/operations/three.md
-  - docs/models/operations/trackcustomerrequestbody.md
-  - docs/models/operations/trackcustomerresponsebody.md
-  - docs/models/operations/trackleadrequestbody.md
-  - docs/models/operations/trackleadresponsebody.md
-  - docs/models/operations/tracksalerequestbody.md
-  - docs/models/operations/tracksaleresponsebody.md
-  - docs/models/operations/two.md
-  - docs/models/operations/updatedomainrequest.md
-  - docs/models/operations/updatedomainrequestbody.md
-  - docs/models/operations/updatelinkrequest.md
-  - docs/models/operations/updatelinkrequestbody.md
-  - docs/models/operations/updatelinktagids.md
-  - docs/models/operations/updatelinktagnames.md
-  - docs/models/operations/updatetagcolor.md
-  - docs/models/operations/updatetagrequest.md
-  - docs/models/operations/updatetagrequestbody.md
-  - docs/models/operations/updateworkspacerequest.md
-  - docs/models/operations/updateworkspacerequestbody.md
-  - docs/models/operations/upsertlinkrequestbody.md
-  - docs/models/operations/upsertlinktagids.md
-  - docs/models/operations/upsertlinktagnames.md
-  - docs/models/sdkerrors/badrequest.md
-  - docs/models/sdkerrors/code.md
-  - docs/models/sdkerrors/conflict.md
-  - docs/models/sdkerrors/conflictcode.md
-  - docs/models/sdkerrors/conflicterror.md
-  - docs/models/sdkerrors/error.md
-  - docs/models/sdkerrors/forbidden.md
-  - docs/models/sdkerrors/forbiddencode.md
-  - docs/models/sdkerrors/forbiddenerror.md
-  - docs/models/sdkerrors/internalservererror.md
-  - docs/models/sdkerrors/internalservererrorcode.md
-  - docs/models/sdkerrors/internalservererrorerror.md
-  - docs/models/sdkerrors/inviteexpired.md
-  - docs/models/sdkerrors/inviteexpiredcode.md
-  - docs/models/sdkerrors/inviteexpirederror.md
-  - docs/models/sdkerrors/notfound.md
-  - docs/models/sdkerrors/notfoundcode.md
-  - docs/models/sdkerrors/notfounderror.md
-  - docs/models/sdkerrors/ratelimitexceeded.md
-  - docs/models/sdkerrors/ratelimitexceededcode.md
-  - docs/models/sdkerrors/ratelimitexceedederror.md
-  - docs/models/sdkerrors/unauthorized.md
-  - docs/models/sdkerrors/unauthorizedcode.md
-  - docs/models/sdkerrors/unauthorizederror.md
-  - docs/models/sdkerrors/unprocessableentity.md
-  - docs/models/sdkerrors/unprocessableentitycode.md
-  - docs/models/sdkerrors/unprocessableentityerror.md
-  - docs/sdks/analytics/README.md
-  - docs/sdks/domains/README.md
-  - docs/sdks/dub/README.md
-  - docs/sdks/events/README.md
-  - docs/sdks/links/README.md
-  - docs/sdks/metatags/README.md
-  - docs/sdks/qrcodes/README.md
-  - docs/sdks/tags/README.md
-  - docs/sdks/track/README.md
-  - docs/sdks/workspaces/README.md
-  - domains.go
-  - dub.go
   - events.go
+  - workspaces.go
+  - tags.go
+  - domains.go
+  - track.go
+  - metatags.go
+  - dub.go
   - go.mod
-  - internal/hooks/hooks.go
+  - models/sdkerrors/sdkerror.go
+  - retry/config.go
+  - types/bigint.go
+  - types/date.go
+  - types/datetime.go
+  - types/decimal.go
+  - types/pointers.go
   - internal/utils/contenttype.go
   - internal/utils/form.go
   - internal/utils/headers.go
@@ -286,20 +61,245 @@ generatedFiles:
   - internal/utils/retries.go
   - internal/utils/security.go
   - internal/utils/utils.go
-  - links.go
-  - metatags.go
+  - /models/operations/getlinks.go
+  - /models/operations/createlink.go
+  - /models/operations/getlinkscount.go
+  - /models/operations/getlinkinfo.go
+  - /models/operations/deletelink.go
+  - /models/operations/updatelink.go
+  - /models/operations/bulkcreatelinks.go
+  - /models/operations/bulkupdatelinks.go
+  - /models/operations/upsertlink.go
+  - /models/operations/getqrcode.go
+  - /models/operations/retrieveanalytics.go
+  - /models/operations/listevents.go
+  - /models/operations/getworkspace.go
+  - /models/operations/updateworkspace.go
+  - /models/operations/createtag.go
+  - /models/operations/updatetag.go
+  - /models/operations/listdomains.go
+  - /models/operations/createdomain.go
+  - /models/operations/deletedomain.go
+  - /models/operations/updatedomain.go
+  - /models/operations/tracklead.go
+  - /models/operations/tracksale.go
+  - /models/operations/trackcustomer.go
+  - /models/operations/getmetatags.go
+  - /models/components/linkschema.go
+  - /models/components/tagschema.go
+  - /models/components/linkgeotargeting.go
+  - /models/components/clickscount.go
+  - /models/components/clickstimeseries.go
+  - /models/components/clickscountries.go
+  - /models/components/clickscities.go
+  - /models/components/clicksdevices.go
+  - /models/components/clicksbrowsers.go
+  - /models/components/clicksos.go
+  - /models/components/clicksreferers.go
+  - /models/components/clickstoplinks.go
+  - /models/components/clickstopurls.go
+  - /models/components/leadscount.go
+  - /models/components/leadstimeseries.go
+  - /models/components/leadscountries.go
+  - /models/components/leadscities.go
+  - /models/components/leadsdevices.go
+  - /models/components/leadsbrowsers.go
+  - /models/components/leadsos.go
+  - /models/components/leadsreferers.go
+  - /models/components/leadstoplinks.go
+  - /models/components/leadstopurls.go
+  - /models/components/salescount.go
+  - /models/components/salestimeseries.go
+  - /models/components/salescountries.go
+  - /models/components/salescities.go
+  - /models/components/salesdevices.go
+  - /models/components/salesbrowsers.go
+  - /models/components/salesos.go
+  - /models/components/salesreferers.go
+  - /models/components/salestoplinks.go
+  - /models/components/salestopurls.go
+  - /models/components/countrycode.go
+  - /models/components/continentcode.go
+  - /models/components/clickevents.go
+  - /models/components/leadevents.go
+  - /models/components/saleevents.go
+  - /models/components/workspaceschema.go
+  - /models/components/domainschema.go
+  - /models/components/security.go
+  - /models/sdkerrors/badrequest.go
+  - /models/sdkerrors/unauthorized.go
+  - /models/sdkerrors/forbidden.go
+  - /models/sdkerrors/notfound.go
+  - /models/sdkerrors/conflict.go
+  - /models/sdkerrors/inviteexpired.go
+  - /models/sdkerrors/unprocessableentity.go
+  - /models/sdkerrors/ratelimitexceeded.go
+  - /models/sdkerrors/internalservererror.go
+  - docs/models/operations/queryparamtagids.md
+  - docs/models/operations/queryparamtagnames.md
+  - docs/models/operations/sort.md
+  - docs/models/operations/getlinksrequest.md
+  - docs/models/operations/getlinksresponse.md
+  - docs/models/operations/tagids.md
+  - docs/models/operations/tagnames.md
+  - docs/models/operations/createlinkrequestbody.md
+  - docs/models/operations/getlinkscountqueryparamtagids.md
+  - docs/models/operations/getlinkscountqueryparamtagnames.md
+  - docs/models/operations/three.md
+  - docs/models/operations/two.md
+  - docs/models/operations/one.md
+  - docs/models/operations/groupby.md
+  - docs/models/operations/getlinkscountrequest.md
+  - docs/models/operations/getlinkinforequest.md
+  - docs/models/operations/deletelinkrequest.md
+  - docs/models/operations/deletelinkresponsebody.md
+  - docs/models/operations/updatelinktagids.md
+  - docs/models/operations/updatelinktagnames.md
+  - docs/models/operations/updatelinkrequestbody.md
+  - docs/models/operations/updatelinkrequest.md
+  - docs/models/operations/bulkcreatelinkstagids.md
+  - docs/models/operations/bulkcreatelinkstagnames.md
+  - docs/models/operations/requestbody.md
+  - docs/models/operations/bulkupdatelinkstagids.md
+  - docs/models/operations/bulkupdatelinkstagnames.md
+  - docs/models/operations/data.md
+  - docs/models/operations/bulkupdatelinksrequestbody.md
+  - docs/models/operations/upsertlinktagids.md
+  - docs/models/operations/upsertlinktagnames.md
+  - docs/models/operations/upsertlinkrequestbody.md
+  - docs/models/operations/level.md
+  - docs/models/operations/getqrcoderequest.md
+  - docs/models/operations/event.md
+  - docs/models/operations/queryparamgroupby.md
+  - docs/models/operations/interval.md
+  - docs/models/operations/retrieveanalyticsrequest.md
+  - docs/models/operations/retrieveanalyticsresponsebody.md
+  - docs/models/operations/queryparamevent.md
+  - docs/models/operations/queryparaminterval.md
+  - docs/models/operations/order.md
+  - docs/models/operations/sortby.md
+  - docs/models/operations/listeventsrequest.md
+  - docs/models/operations/listeventsresponsebody.md
+  - docs/models/operations/getworkspacerequest.md
+  - docs/models/operations/updateworkspacerequestbody.md
+  - docs/models/operations/updateworkspacerequest.md
+  - docs/models/operations/color.md
+  - docs/models/operations/createtagrequestbody.md
+  - docs/models/operations/updatetagcolor.md
+  - docs/models/operations/updatetagrequestbody.md
+  - docs/models/operations/updatetagrequest.md
+  - docs/models/operations/listdomainsrequest.md
+  - docs/models/operations/listdomainsresponse.md
+  - docs/models/operations/createdomainrequestbody.md
+  - docs/models/operations/deletedomainrequest.md
+  - docs/models/operations/deletedomainresponsebody.md
+  - docs/models/operations/updatedomainrequestbody.md
+  - docs/models/operations/updatedomainrequest.md
+  - docs/models/operations/trackleadrequestbody.md
+  - docs/models/operations/trackleadresponsebody.md
+  - docs/models/operations/paymentprocessor.md
+  - docs/models/operations/tracksalerequestbody.md
+  - docs/models/operations/tracksaleresponsebody.md
+  - docs/models/operations/trackcustomerrequestbody.md
+  - docs/models/operations/trackcustomerresponsebody.md
+  - docs/models/operations/getmetatagsrequest.md
+  - docs/models/operations/getmetatagsresponsebody.md
+  - docs/models/components/geo.md
+  - docs/models/components/linkschema.md
+  - docs/models/components/color.md
+  - docs/models/components/tagschema.md
+  - docs/models/components/linkgeotargeting.md
+  - docs/models/components/clickscount.md
+  - docs/models/components/clickstimeseries.md
+  - docs/models/components/country.md
+  - docs/models/components/clickscountries.md
+  - docs/models/components/clickscitiescountry.md
+  - docs/models/components/clickscities.md
+  - docs/models/components/clicksdevices.md
+  - docs/models/components/clicksbrowsers.md
+  - docs/models/components/clicksos.md
+  - docs/models/components/clicksreferers.md
+  - docs/models/components/clickstoplinks.md
+  - docs/models/components/clickstopurls.md
+  - docs/models/components/leadscount.md
+  - docs/models/components/leadstimeseries.md
+  - docs/models/components/leadscountriescountry.md
+  - docs/models/components/leadscountries.md
+  - docs/models/components/leadscitiescountry.md
+  - docs/models/components/leadscities.md
+  - docs/models/components/leadsdevices.md
+  - docs/models/components/leadsbrowsers.md
+  - docs/models/components/leadsos.md
+  - docs/models/components/leadsreferers.md
+  - docs/models/components/leadstoplinks.md
+  - docs/models/components/leadstopurls.md
+  - docs/models/components/salescount.md
+  - docs/models/components/salestimeseries.md
+  - docs/models/components/salescountriescountry.md
+  - docs/models/components/salescountries.md
+  - docs/models/components/salescitiescountry.md
+  - docs/models/components/salescities.md
+  - docs/models/components/salesdevices.md
+  - docs/models/components/salesbrowsers.md
+  - docs/models/components/salesos.md
+  - docs/models/components/salesreferers.md
+  - docs/models/components/salestoplinks.md
+  - docs/models/components/salestopurls.md
+  - docs/models/components/countrycode.md
+  - docs/models/components/continentcode.md
+  - docs/models/components/clickevents.md
+  - docs/models/components/leadevents.md
+  - docs/models/components/saleevents.md
+  - docs/models/components/plan.md
+  - docs/models/components/role.md
+  - docs/models/components/users.md
+  - docs/models/components/domains.md
+  - docs/models/components/workspaceschema.md
+  - docs/models/components/domainschema.md
+  - docs/models/components/security.md
+  - docs/models/sdkerrors/code.md
+  - docs/models/sdkerrors/error.md
+  - docs/models/sdkerrors/badrequest.md
+  - docs/models/sdkerrors/unauthorizedcode.md
+  - docs/models/sdkerrors/unauthorizederror.md
+  - docs/models/sdkerrors/unauthorized.md
+  - docs/models/sdkerrors/forbiddencode.md
+  - docs/models/sdkerrors/forbiddenerror.md
+  - docs/models/sdkerrors/forbidden.md
+  - docs/models/sdkerrors/notfoundcode.md
+  - docs/models/sdkerrors/notfounderror.md
+  - docs/models/sdkerrors/notfound.md
+  - docs/models/sdkerrors/conflictcode.md
+  - docs/models/sdkerrors/conflicterror.md
+  - docs/models/sdkerrors/conflict.md
+  - docs/models/sdkerrors/inviteexpiredcode.md
+  - docs/models/sdkerrors/inviteexpirederror.md
+  - docs/models/sdkerrors/inviteexpired.md
+  - docs/models/sdkerrors/unprocessableentitycode.md
+  - docs/models/sdkerrors/unprocessableentityerror.md
+  - docs/models/sdkerrors/unprocessableentity.md
+  - docs/models/sdkerrors/ratelimitexceededcode.md
+  - docs/models/sdkerrors/ratelimitexceedederror.md
+  - docs/models/sdkerrors/ratelimitexceeded.md
+  - docs/models/sdkerrors/internalservererrorcode.md
+  - docs/models/sdkerrors/internalservererrorerror.md
+  - docs/models/sdkerrors/internalservererror.md
+  - docs/sdks/dub/README.md
+  - docs/models/operations/option.md
+  - docs/sdks/links/README.md
+  - docs/sdks/qrcodes/README.md
+  - docs/sdks/analytics/README.md
+  - docs/sdks/events/README.md
+  - docs/sdks/workspaces/README.md
+  - docs/sdks/tags/README.md
+  - docs/sdks/domains/README.md
+  - docs/sdks/track/README.md
+  - docs/sdks/metatags/README.md
+  - USAGE.md
   - models/operations/options.go
-  - models/sdkerrors/sdkerror.go
-  - qrcodes.go
-  - retry/config.go
-  - tags.go
-  - track.go
-  - types/bigint.go
-  - types/date.go
-  - types/datetime.go
-  - types/decimal.go
-  - types/pointers.go
-  - workspaces.go
+  - .gitattributes
+  - internal/hooks/hooks.go
+  - CONTRIBUTING.md
 examples:
   getLinks:
     speakeasy-default-get-links:
@@ -326,6 +326,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   createLink:
     speakeasy-default-create-link:
       requestBody:
@@ -349,6 +350,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   getLinksCount:
     speakeasy-default-get-links-count:
       responses:
@@ -370,6 +372,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   getLinkInfo:
     speakeasy-default-get-link-info:
       parameters:
@@ -395,6 +398,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   deleteLink:
     speakeasy-default-delete-link:
       parameters:
@@ -419,6 +423,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   updateLink:
     speakeasy-default-update-link:
       parameters:
@@ -445,6 +450,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   bulkCreateLinks:
     speakeasy-default-bulk-create-links:
       requestBody:
@@ -468,6 +474,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   bulkUpdateLinks:
     speakeasy-default-bulk-update-links:
       requestBody:
@@ -491,6 +498,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   upsertLink:
     speakeasy-default-upsert-link:
       requestBody:
@@ -514,6 +522,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   getQRCode:
     speakeasy-default-get-QR-code:
       parameters:
@@ -538,6 +547,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   retrieveAnalytics:
     speakeasy-default-retrieve-analytics:
       parameters:
@@ -567,6 +577,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   listEvents:
     speakeasy-default-list-events:
       parameters:
@@ -596,6 +607,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   getWorkspace:
     speakeasy-default-get-workspace:
       parameters:
@@ -669,6 +681,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   createTag:
     speakeasy-default-create-tag:
       responses:
@@ -690,6 +703,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "201": {}
   updateTag:
     speakeasy-default-update-tag:
       parameters:
@@ -714,6 +728,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   listDomains:
     speakeasy-default-list-domains:
       parameters:
@@ -843,6 +858,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   trackSale:
     speakeasy-default-track-sale:
       requestBody:
@@ -866,6 +882,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   trackCustomer:
     speakeasy-default-track-customer:
       responses:
@@ -887,6 +904,7 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+        "200": {}
   getMetatags:
     speakeasy-default-get-metatags:
       parameters:
