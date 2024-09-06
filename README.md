@@ -7,9 +7,31 @@
     </a>
 </div>
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Dub.co API: Dub is link management infrastructure for companies to create marketing campaigns, link sharing features, and referral programs.
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Pagination](#pagination)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/dubinc/dub-go
 ```
@@ -34,15 +56,17 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
+
+	ctx := context.Background()
+	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
-		TagIds: operations.CreateTagIdsStr(
-			"[\"clux0rgak00011...\"]",
+		TagIds: operations.CreateTagIdsArrayOfStr(
+			[]string{
+				"clux0rgak00011...",
+			},
 		),
-	}
-	ctx := context.Background()
-	res, err := s.Links.Create(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -69,7 +93,9 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
+
+	ctx := context.Background()
+	res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
 		TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
@@ -77,9 +103,7 @@ func main() {
 				"clux0rgak00011...",
 			},
 		),
-	}
-	ctx := context.Background()
-	res, err := s.Links.Upsert(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -183,12 +207,12 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 
 		var e *sdkerrors.BadRequest
@@ -284,12 +308,12 @@ func main() {
 		dubgo.WithServerIndex(0),
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -332,12 +356,12 @@ func main() {
 		dubgo.WithServerURL("https://api.dub.co"),
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -417,12 +441,12 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -475,12 +499,12 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request, operations.WithRetries(
+	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -541,12 +565,12 @@ func main() {
 			}),
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -593,12 +617,12 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
