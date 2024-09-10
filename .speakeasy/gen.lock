@@ -4,7 +4,7 @@ management:
   docChecksum: a8165462b93c33c03cc5540b2f764d0b
   docVersion: 0.0.1
   speakeasyVersion: internal
-  generationVersion: 2.415.1
+  generationVersion: 2.415.0
   releaseVersion: 0.8.2
   configChecksum: 9ad93f9705e117c0020ddc17d962f7ae
   repoURL: https://github.com/dubinc/dub-go.git
@@ -13,7 +13,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.6
+    core: 3.5.7
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.3.1
