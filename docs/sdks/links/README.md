@@ -116,11 +116,11 @@ func main() {
     res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
         URL: "https://google.com",
         ExternalID: dubgo.String("123456"),
-        TagIds: operations.CreateTagIdsArrayOfStr(
-                []string{
-                    "clux0rgak00011...",
-                },
-        ),
+        TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
+            []string{
+                "clux0rgak00011...",
+            },
+        )),
     })
     if err != nil {
         log.Fatal(err)
@@ -366,11 +366,11 @@ func main() {
     res, err := s.Links.Update(ctx, "<value>", &operations.UpdateLinkRequestBody{
         URL: dubgo.String("https://google.com"),
         ExternalID: dubgo.String("123456"),
-        TagIds: operations.CreateUpdateLinkTagIdsArrayOfStr(
-                []string{
-                    "clux0rgak00011...",
-                },
-        ),
+        TagIds: dubgo.Pointer(operations.CreateUpdateLinkTagIdsArrayOfStr(
+            []string{
+                "clux0rgak00011...",
+            },
+        )),
     })
     if err != nil {
         log.Fatal(err)
@@ -436,11 +436,11 @@ func main() {
         operations.RequestBody{
             URL: "https://google.com",
             ExternalID: dubgo.String("123456"),
-            TagIds: operations.CreateBulkCreateLinksTagIdsArrayOfStr(
-                    []string{
-                        "clux0rgak00011...",
-                    },
-            ),
+            TagIds: dubgo.Pointer(operations.CreateBulkCreateLinksTagIdsArrayOfStr(
+                []string{
+                    "clux0rgak00011...",
+                },
+            )),
         },
     })
     if err != nil {
@@ -508,11 +508,11 @@ func main() {
         },
         Data: operations.Data{
             URL: dubgo.String("https://google.com"),
-            TagIds: operations.CreateBulkUpdateLinksTagIdsArrayOfStr(
-                    []string{
-                        "clux0rgak00011...",
-                    },
-            ),
+            TagIds: dubgo.Pointer(operations.CreateBulkUpdateLinksTagIdsArrayOfStr(
+                []string{
+                    "clux0rgak00011...",
+                },
+            )),
         },
     })
     if err != nil {
@@ -577,11 +577,11 @@ func main() {
     res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
         URL: "https://google.com",
         ExternalID: dubgo.String("123456"),
-        TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
-                []string{
-                    "clux0rgak00011...",
-                },
-        ),
+        TagIds: dubgo.Pointer(operations.CreateUpsertLinkTagIdsArrayOfStr(
+            []string{
+                "clux0rgak00011...",
+            },
+        )),
     })
     if err != nil {
         log.Fatal(err)
