@@ -7,9 +7,31 @@
     </a>
 </div>
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Dub.co API: Dub is link management infrastructure for companies to create marketing campaigns, link sharing features, and referral programs.
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Pagination](#pagination)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/dubinc/dub-go
 ```
@@ -34,15 +56,17 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
+
+	ctx := context.Background()
+	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
-		TagIds: operations.CreateTagIdsStr(
-			"[\"clux0rgak00011...\"]",
+		TagIds: operations.CreateTagIdsArrayOfStr(
+			[]string{
+				"clux0rgak00011...",
+			},
 		),
-	}
-	ctx := context.Background()
-	res, err := s.Links.Create(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -69,7 +93,9 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
+
+	ctx := context.Background()
+	res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
 		TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
@@ -77,9 +103,7 @@ func main() {
 				"clux0rgak00011...",
 			},
 		),
-	}
-	ctx := context.Background()
-	res, err := s.Links.Upsert(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -94,6 +118,25 @@ func main() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
+### [Analytics](docs/sdks/analytics/README.md)
+
+* [Retrieve](docs/sdks/analytics/README.md#retrieve) - Retrieve analytics for a link, a domain, or the authenticated workspace.
+
+### [Domains](docs/sdks/domains/README.md)
+
+* [List](docs/sdks/domains/README.md#list) - Retrieve a list of domains
+* [Create](docs/sdks/domains/README.md#create) - Create a domain
+* [Delete](docs/sdks/domains/README.md#delete) - Delete a domain
+* [Update](docs/sdks/domains/README.md#update) - Update a domain
+
+
+### [Events](docs/sdks/events/README.md)
+
+* [List](docs/sdks/events/README.md#list) - Retrieve a list of events
+
 ### [Links](docs/sdks/links/README.md)
 
 * [List](docs/sdks/links/README.md#list) - Retrieve a list of links
@@ -106,22 +149,13 @@ func main() {
 * [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [Upsert](docs/sdks/links/README.md#upsert) - Upsert a link
 
+### [Metatags](docs/sdks/metatags/README.md)
+
+* [Get](docs/sdks/metatags/README.md#get) - Retrieve the metatags for a URL
+
 ### [QRCodes](docs/sdks/qrcodes/README.md)
 
 * [Get](docs/sdks/qrcodes/README.md#get) - Retrieve a QR code
-
-### [Analytics](docs/sdks/analytics/README.md)
-
-* [Retrieve](docs/sdks/analytics/README.md#retrieve) - Retrieve analytics for a link, a domain, or the authenticated workspace.
-
-### [Events](docs/sdks/events/README.md)
-
-* [List](docs/sdks/events/README.md#list) - Retrieve a list of events
-
-### [Workspaces](docs/sdks/workspaces/README.md)
-
-* [Get](docs/sdks/workspaces/README.md#get) - Retrieve a workspace
-* [Update](docs/sdks/workspaces/README.md#update) - Update a workspace
 
 ### [Tags](docs/sdks/tags/README.md)
 
@@ -129,22 +163,18 @@ func main() {
 * [Create](docs/sdks/tags/README.md#create) - Create a new tag
 * [Update](docs/sdks/tags/README.md#update) - Update a tag
 
-### [Domains](docs/sdks/domains/README.md)
-
-* [List](docs/sdks/domains/README.md#list) - Retrieve a list of domains
-* [Create](docs/sdks/domains/README.md#create) - Create a domain
-* [Delete](docs/sdks/domains/README.md#delete) - Delete a domain
-* [Update](docs/sdks/domains/README.md#update) - Update a domain
-
 ### [Track](docs/sdks/track/README.md)
 
 * [Lead](docs/sdks/track/README.md#lead) - Track a lead
 * [Sale](docs/sdks/track/README.md#sale) - Track a sale
 * [Customer](docs/sdks/track/README.md#customer) - Track a customer
 
-### [Metatags](docs/sdks/metatags/README.md)
+### [Workspaces](docs/sdks/workspaces/README.md)
 
-* [Get](docs/sdks/metatags/README.md#get) - Retrieve the metatags for a URL
+* [Get](docs/sdks/workspaces/README.md#get) - Retrieve a workspace
+* [Update](docs/sdks/workspaces/README.md#update) - Update a workspace
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -183,12 +213,12 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 
 		var e *sdkerrors.BadRequest
@@ -284,12 +314,12 @@ func main() {
 		dubgo.WithServerIndex(0),
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -332,12 +362,12 @@ func main() {
 		dubgo.WithServerURL("https://api.dub.co"),
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -417,12 +447,12 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -475,12 +505,12 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request, operations.WithRetries(
+	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -541,12 +571,12 @@ func main() {
 			}),
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -593,12 +623,12 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{
+
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
 		Page:     dubgo.Float64(1),
 		PageSize: dubgo.Float64(50),
-	}
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
