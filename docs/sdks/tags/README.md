@@ -54,7 +54,7 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -65,8 +65,7 @@ func main() {
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
-
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## Create
 
@@ -113,7 +112,7 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -124,8 +123,7 @@ func main() {
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
-
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## Delete
 
@@ -172,7 +170,7 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -183,8 +181,7 @@ func main() {
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
-
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## Update
 
@@ -232,7 +229,7 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -243,4 +240,4 @@ func main() {
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
