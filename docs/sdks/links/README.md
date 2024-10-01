@@ -5,84 +5,16 @@
 
 ### Available Operations
 
-* [Create](#create) - Create a new link
 * [List](#list) - Retrieve a list of links
+* [Create](#create) - Create a new link
 * [Count](#count) - Retrieve links count
 * [Get](#get) - Retrieve a link
-* [Update](#update) - Update a link
 * [Delete](#delete) - Delete a link
+* [Update](#update) - Update a link
 * [CreateMany](#createmany) - Bulk create links
-* [UpdateMany](#updatemany) - Bulk update links
 * [DeleteMany](#deletemany) - Bulk delete links
+* [UpdateMany](#updatemany) - Bulk update links
 * [Upsert](#upsert) - Upsert a link
-
-## Create
-
-Create a new link for the authenticated workspace.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	dubgo "github.com/dubinc/dub-go"
-	"context"
-	"github.com/dubinc/dub-go/models/operations"
-	"log"
-)
-
-func main() {
-    s := dubgo.New(
-        dubgo.WithSecurity("DUB_API_KEY"),
-    )
-
-    ctx := context.Background()
-    res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-        URL: "https://google.com",
-        ExternalID: dubgo.String("123456"),
-        TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-            []string{
-                "clux0rgak00011...",
-            },
-        )),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.CreateLinkRequestBody](../../models/operations/createlinkrequestbody.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
-
-### Response
-
-**[*components.LinkSchema](../../models/components/linkschema.md), error**
-
-### Errors
-
-| Error Object                  | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.BadRequest          | 400                           | application/json              |
-| sdkerrors.Unauthorized        | 401                           | application/json              |
-| sdkerrors.Forbidden           | 403                           | application/json              |
-| sdkerrors.NotFound            | 404                           | application/json              |
-| sdkerrors.Conflict            | 409                           | application/json              |
-| sdkerrors.InviteExpired       | 410                           | application/json              |
-| sdkerrors.UnprocessableEntity | 422                           | application/json              |
-| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
-| sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
-
 
 ## List
 
@@ -146,7 +78,7 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -157,8 +89,74 @@ func main() {
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
+## Create
+
+Create a new link for the authenticated workspace.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	dubgo "github.com/dubinc/dub-go"
+	"context"
+	"github.com/dubinc/dub-go/models/operations"
+	"log"
+)
+
+func main() {
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
+        URL: "https://google.com",
+        ExternalID: dubgo.String("123456"),
+        TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
+            []string{
+                "clux0rgak00011...",
+            },
+        )),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.CreateLinkRequestBody](../../models/operations/createlinkrequestbody.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+
+### Response
+
+**[*components.LinkSchema](../../models/components/linkschema.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## Count
 
@@ -206,7 +204,7 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -217,8 +215,7 @@ func main() {
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
-
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## Get
 
@@ -269,7 +266,7 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -280,8 +277,65 @@ func main() {
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
+## Delete
+
+Delete a link for the authenticated workspace.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	dubgo "github.com/dubinc/dub-go"
+	"context"
+	"log"
+)
+
+func main() {
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Links.Delete(ctx, "<value>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                 | :heavy_check_mark:                                                                                                                    | The context to use for the request.                                                                                                   |
+| `linkID`                                                                                                                              | *string*                                                                                                                              | :heavy_check_mark:                                                                                                                    | The id of the link to delete. You may use either `linkId` (obtained via `/links/info` endpoint) or `externalId` prefixed with `ext_`. |
+| `opts`                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                              | :heavy_minus_sign:                                                                                                                    | The options for this request.                                                                                                         |
+
+### Response
+
+**[*operations.DeleteLinkResponseBody](../../models/operations/deletelinkresponsebody.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## Update
 
@@ -338,7 +392,7 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -349,67 +403,7 @@ func main() {
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
-
-
-## Delete
-
-Delete a link for the authenticated workspace.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	dubgo "github.com/dubinc/dub-go"
-	"context"
-	"log"
-)
-
-func main() {
-    s := dubgo.New(
-        dubgo.WithSecurity("DUB_API_KEY"),
-    )
-
-    ctx := context.Background()
-    res, err := s.Links.Delete(ctx, "<value>")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                 | :heavy_check_mark:                                                                                                                    | The context to use for the request.                                                                                                   |
-| `linkID`                                                                                                                              | *string*                                                                                                                              | :heavy_check_mark:                                                                                                                    | The id of the link to delete. You may use either `linkId` (obtained via `/links/info` endpoint) or `externalId` prefixed with `ext_`. |
-| `opts`                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                              | :heavy_minus_sign:                                                                                                                    | The options for this request.                                                                                                         |
-
-### Response
-
-**[*operations.DeleteLinkResponseBody](../../models/operations/deletelinkresponsebody.md), error**
-
-### Errors
-
-| Error Object                  | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.BadRequest          | 400                           | application/json              |
-| sdkerrors.Unauthorized        | 401                           | application/json              |
-| sdkerrors.Forbidden           | 403                           | application/json              |
-| sdkerrors.NotFound            | 404                           | application/json              |
-| sdkerrors.Conflict            | 409                           | application/json              |
-| sdkerrors.InviteExpired       | 410                           | application/json              |
-| sdkerrors.UnprocessableEntity | 422                           | application/json              |
-| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
-| sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
-
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## CreateMany
 
@@ -467,7 +461,7 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -478,8 +472,71 @@ func main() {
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
+## DeleteMany
+
+Bulk delete up to 100 links for the authenticated workspace.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	dubgo "github.com/dubinc/dub-go"
+	"context"
+	"github.com/dubinc/dub-go/models/operations"
+	"log"
+)
+
+func main() {
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Links.DeleteMany(ctx, operations.BulkDeleteLinksRequest{
+        LinkIds: []string{
+            "clux0rgak00011...",
+            "clux0rgak00022...",
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.BulkDeleteLinksRequest](../../models/operations/bulkdeletelinksrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+
+### Response
+
+**[*operations.BulkDeleteLinksResponseBody](../../models/operations/bulkdeletelinksresponsebody.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## UpdateMany
 
@@ -539,7 +596,7 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -550,73 +607,7 @@ func main() {
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
-
-
-## DeleteMany
-
-Bulk delete up to 100 links for the authenticated workspace.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	dubgo "github.com/dubinc/dub-go"
-	"context"
-	"github.com/dubinc/dub-go/models/operations"
-	"log"
-)
-
-func main() {
-    s := dubgo.New(
-        dubgo.WithSecurity("DUB_API_KEY"),
-    )
-
-    ctx := context.Background()
-    res, err := s.Links.DeleteMany(ctx, operations.BulkDeleteLinksRequest{
-        LinkIds: []string{
-            "clux0rgak00011...",
-            "clux0rgak00022...",
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.BulkDeleteLinksRequest](../../models/operations/bulkdeletelinksrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
-
-### Response
-
-**[*operations.BulkDeleteLinksResponseBody](../../models/operations/bulkdeletelinksresponsebody.md), error**
-
-### Errors
-
-| Error Object                  | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.BadRequest          | 400                           | application/json              |
-| sdkerrors.Unauthorized        | 401                           | application/json              |
-| sdkerrors.Forbidden           | 403                           | application/json              |
-| sdkerrors.NotFound            | 404                           | application/json              |
-| sdkerrors.Conflict            | 409                           | application/json              |
-| sdkerrors.InviteExpired       | 410                           | application/json              |
-| sdkerrors.UnprocessableEntity | 422                           | application/json              |
-| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
-| sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
-
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## Upsert
 
@@ -672,7 +663,7 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -683,4 +674,4 @@ func main() {
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |

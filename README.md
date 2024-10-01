@@ -127,10 +127,10 @@ func main() {
 
 ### [Domains](docs/sdks/domains/README.md)
 
-* [Create](docs/sdks/domains/README.md#create) - Create a domain
 * [List](docs/sdks/domains/README.md#list) - Retrieve a list of domains
-* [Update](docs/sdks/domains/README.md#update) - Update a domain
+* [Create](docs/sdks/domains/README.md#create) - Create a domain
 * [Delete](docs/sdks/domains/README.md#delete) - Delete a domain
+* [Update](docs/sdks/domains/README.md#update) - Update a domain
 
 
 ### [Events](docs/sdks/events/README.md)
@@ -139,15 +139,15 @@ func main() {
 
 ### [Links](docs/sdks/links/README.md)
 
-* [Create](docs/sdks/links/README.md#create) - Create a new link
 * [List](docs/sdks/links/README.md#list) - Retrieve a list of links
+* [Create](docs/sdks/links/README.md#create) - Create a new link
 * [Count](docs/sdks/links/README.md#count) - Retrieve links count
 * [Get](docs/sdks/links/README.md#get) - Retrieve a link
-* [Update](docs/sdks/links/README.md#update) - Update a link
 * [Delete](docs/sdks/links/README.md#delete) - Delete a link
+* [Update](docs/sdks/links/README.md#update) - Update a link
 * [CreateMany](docs/sdks/links/README.md#createmany) - Bulk create links
-* [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [DeleteMany](docs/sdks/links/README.md#deletemany) - Bulk delete links
+* [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [Upsert](docs/sdks/links/README.md#upsert) - Upsert a link
 
 ### [Metatags](docs/sdks/metatags/README.md)
@@ -160,10 +160,10 @@ func main() {
 
 ### [Tags](docs/sdks/tags/README.md)
 
-* [Create](docs/sdks/tags/README.md#create) - Create a new tag
 * [List](docs/sdks/tags/README.md#list) - Retrieve a list of tags
-* [Update](docs/sdks/tags/README.md#update) - Update a tag
+* [Create](docs/sdks/tags/README.md#create) - Create a new tag
 * [Delete](docs/sdks/tags/README.md#delete) - Delete a tag
+* [Update](docs/sdks/tags/README.md#update) - Update a tag
 
 ### [Track](docs/sdks/track/README.md)
 
@@ -182,9 +182,13 @@ func main() {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or an error, they will never return both.
 
-| Error Object                  | Status Code                   | Content Type                  |
+By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
+
+For example, the `List` function may return the following errors:
+
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
 | sdkerrors.Unauthorized        | 401                           | application/json              |
@@ -195,7 +199,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | sdkerrors.UnprocessableEntity | 422                           | application/json              |
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ### Example
 
@@ -217,14 +221,9 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.String("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
 	})
 	if err != nil {
 
@@ -323,20 +322,28 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.String("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
 	}
 }
 
@@ -363,20 +370,28 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.String("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
 	}
 }
 
@@ -440,20 +455,28 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.String("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
 	}
 }
 
@@ -490,14 +513,9 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.String("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
 	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
@@ -513,7 +531,20 @@ func main() {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
 	}
 }
 
@@ -548,20 +579,28 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.String("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
 	}
 }
 
