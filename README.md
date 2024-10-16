@@ -295,61 +295,6 @@ func main() {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
-
-You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.dub.co` | None |
-
-#### Example
-
-```go
-package main
-
-import (
-	"context"
-	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
-	"log"
-)
-
-func main() {
-	s := dubgo.New(
-		dubgo.WithServerIndex(0),
-		dubgo.WithSecurity("DUB_API_KEY"),
-	)
-
-	ctx := context.Background()
-	res, err := s.Links.List(ctx, operations.GetLinksRequest{
-		Page:     dubgo.Float64(1),
-		PageSize: dubgo.Float64(50),
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
-
-	}
-}
-
-```
-
-
 ### Override Server URL Per-Client
 
 The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
